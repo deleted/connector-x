@@ -79,6 +79,7 @@ where
     }
 }
 
+#[derive(Copy, Clone)]
 pub struct PostgresSource<P, C>
 where
     C: MakeTlsConnect<Socket> + Clone + 'static + Sync + Send,
@@ -119,7 +120,7 @@ where
     }
 
     #[throws(PostgresSourceError)]
-    pub fn from_pool(pool: Pool) -> Self {
+    pub fn from_pool(pool: Pool<PgManager<C>>) -> Self {
         Self {
             pool,
             origin_query: None,
