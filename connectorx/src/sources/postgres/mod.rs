@@ -79,7 +79,6 @@ where
     }
 }
 
-#[derive(Copy, Clone)]
 pub struct PostgresSource<P, C>
 where
     C: MakeTlsConnect<Socket> + Clone + 'static + Sync + Send,
