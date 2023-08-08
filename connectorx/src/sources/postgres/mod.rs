@@ -117,6 +117,19 @@ where
             _protocol: PhantomData,
         }
     }
+
+    #[throws(PostgresSourceError)]
+    pub fn from_pool(pool: Pool) -> Self {
+        Self {
+            pool,
+            origin_query: None,
+            queries: vec![],
+            names: vec![],
+            schema: vec![],
+            pg_schema: vec![],
+            _protocol: PhantomData,
+        }
+    }
 }
 
 impl<P, C> Source for PostgresSource<P, C>
